@@ -1,0 +1,55 @@
+parameters currentDate, ArrRgnums
+
+ABORT_BY_COND(empty(ArrRgnums) OR empty(currentDate))
+
+local fltRgnums := ""
+
+local i:=1, n:=len(ArrRgnums)
+
+for i := 1 to n
+  fltRgnums := fltRgnums + " RGNUM = '" + ArrRgnums[i] + "' OR"
+next
+fltRgnums := Left(fltRgnums, Len(fltRgnums) - 2 )
+
+local flt := "KINDDOC = 'RTH' AND LVLNUM = '1' AND (" + fltRgnums + ") AND (KANAL1 = 13 OR KANAL1 = 14 OR KANAL1 = 15)"
+
+local year := Year(currentDate)
+local month:= Month(currentDate)
+
+TRY
+  local rth1 := OpenChildDoc('RTH','1','',~ParentForm:='',~Year:=year,~Month:=month)
+  (rth1)->SetFilter(flt)
+  (rth1)->ORDSETFOCUS('RGNUM')
+
+  local arr:={}, cnt := (rth1)->isSingle()
+  for i:=1 to cnt
+    AADD(arr,(rth1)->rgnum)
+    (rth1)->dbSkip()
+  next
+//@
+  local cntChanged := 0, rgchanged := {}
+  for i:=1 to len(arr)
+    (rth1)->DBSEEK(arr[i])
+    if (rth1)->RGNUM = arr[i]
+      if AllTrim((rth1)->DEBT) <> ''
+        (rth1)->(ADD_Replace({||Field->DREFL2:=''}))
+        AADD(rgchanged, "'"+(rth1)->RGNUM+"'")
+        cntChanged := cntChanged + 1
+      endif
+    endif
+  next
+
+//region add to log about changeds
+  if (cntChanged > 0)
+    rgchanged := ArrAsString(rgchanged)
+    local KOMP := IDWORKPLACE + "_" + STRTRAN(STRTRAN(STRTRAN(IDNETADDR,' ',''),'.',''),'-','_')
+    local msg := "Массовый пересчет ПФА 'сброс признака - DREF2' для "+cntChanged+" рейсов ["+rgchanged+"]."
+    ADD_TO_LOG(msg, "Массовый_Пересчет_ПФА_"+userkod+"_"+KOMP+".LOG")
+  endif
+//endregion
+
+FINALLY
+  CloseKlsf(rth1)
+  MESSAGE("Завершено!")
+  return cntChanged
+END

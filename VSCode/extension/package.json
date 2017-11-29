@@ -1,0 +1,19 @@
+{
+	"name": "fabius",
+	"version": "1.0.0",
+	"publisher": "ASelyuk",
+	"engines": { "vscode": "*" },
+	"contributes": {
+		"languages": [{
+			"id": "fabius",
+			"extensions": [ ".fb", ".fabius" ],
+			"aliases": [ "Fabius source code", "fabius" ],
+			"configuration": "./language-configuration.json"
+		}],
+		"grammars": [{
+			"language": "fabius",
+			"scopeName": "source.fabius",
+			"path": "./syntaxes/Fabius.tmLanguage"
+		}]
+	}
+}

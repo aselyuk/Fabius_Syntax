@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Language="en-US" Id="Fabius-syntax" Version="1.0.0" Publisher="ASelyuk"/>
+    <DisplayName>Fabius syntax</DisplayName>
+    <Description xml:space="preserve">Подсветка синтаксиса Фабиус для VSCode</Description>
+    <Tags>vscode</Tags>
+    <Categories>Languages</Categories>
+    <GalleryFlags>Public</GalleryFlags>
+    <Properties>
+
+      <Property Id="Microsoft.VisualStudio.Services.Links.Source" Value="https://github.com/aselyuk/Fabius_Syntax/tree/master/VSCode" />
+      <Property Id="Microsoft.VisualStudio.Services.Links.Getstarted" Value="https://github.com/aselyuk/Fabius_Syntax/tree/master/VSCode" />
+      <Property Id="Microsoft.VisualStudio.Services.Links.Repository" Value="https://github.com/aselyuk/Fabius_Syntax/tree/master/VSCode" />
+
+
+      <Property Id="Microsoft.VisualStudio.Services.Links.Learn" Value="https://github.com/aselyuk/Fabius_Syntax/tree/master/VSCode/Readme.md" />
+
+
+    </Properties>
+
+    <!--<Icon>extension/icon.png</Icon>-->
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Code"/>
+  </Installation>
+  <Dependencies/>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.Code.Manifest" Path="extension/package.json" Addressable="true" />
+    <Asset Type="Microsoft.VisualStudio.Services.Content.Details" Path="README.md" Addressable="true" />
+    <!--<Asset Type="Microsoft.VisualStudio.Services.Icons.Default" Path="extension/icon.png" Addressable="true" />-->
+  </Assets>
+</PackageManifest>
