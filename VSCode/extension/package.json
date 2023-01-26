@@ -1,12 +1,12 @@
 {
 	"name": "fabius",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "ASelyuk",
 	"engines": { "vscode": "*" },
 	"contributes": {
 		"languages": [{
 			"id": "fabius",
-			"extensions": [ ".fb", ".fabius" ],
+			"extensions": [ ".fabius" ],
 			"aliases": [ "Fabius source code", "fabius" ],
 			"configuration": "./language-configuration.json"
 		}],

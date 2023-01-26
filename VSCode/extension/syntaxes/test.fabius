@@ -48,6 +48,15 @@ TRY
   endif
 //endregion
 
+/* dsfgdgsd
+dfh
+*/
+
+local f := .f.
+
+
+
+
 FINALLY
   CloseKlsf(rth1)
   MESSAGE("Завершено!")

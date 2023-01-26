@@ -32,7 +32,7 @@
 			<key>comment</key>
 			<string>Keywords</string>
 			<key>match</key>
-			<string>\b(?i:(if|endif|while|endwhile|try|except|endtry|for|endfor|finally|end|parameters|global|local|private|public|return|loop|to|next|else))\b</string>
+			<string>\b(?i:(if|endif|while|enddo|try|except|end|for|next|finally|parameters|global|local|private|public|return|loop|to|else|elseif))\b</string>
 			<key>name</key>
 			<string>keyword.control.fabius</string>
 		</dict>
